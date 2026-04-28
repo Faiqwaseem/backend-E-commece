@@ -1,1 +1,41 @@
 # backend-E-commece
+
+project-root/
+│
+├── src/
+│   ├── config/                   == `Configuration files and environment variables`
+│   │   └── db.js
+│
+│   ├── controllers/              == `Handles incoming requests and returns responses`
+│   │   └── user.controller.js
+│
+│   ├── models/                 == `Defines the data structure and interacts with the database`
+│   │   └── user.model.js
+│
+│   ├── routes/                == `Defines the API endpoints and maps them to controllers`
+│   │   └── user.routes.js
+│
+│   ├── middlewares/           == `Contains middleware functions for authentication, error handling etc`
+│   │   ├── auth.middleware.js
+│   │   └── error.middleware.js
+│
+│   ├── services/              == `Contains business logic and interacts with models`
+│   │   └── user.service.js
+│
+│   ├── utils/               == `Utility functions and helpers`
+│   │   └── generateToken.js
+│
+│   ├── validators/             == `Validation logic for incoming data`
+│   │   └── user.validator.js
+│
+│   ├── app.js                 == `Main application file that sets up the Express server and middleware`
+│   └── server.js             == `Starts the server and listens for incoming requests`
+│
+├── .env                      == `Environment variables for configuration`
+├── .gitignore             == `Specifies files and directories to be ignored by Git`
+├── package.json           == `Defines project dependencies and scripts`
+
+
+
+# README
+This project is a Node.js application structured in a modular way to promote separation of concerns and maintainability. Below is an overview of the project structure and its components:
