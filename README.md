@@ -37,5 +37,46 @@ project-root/
 
 
 
+
+final  folder structure.
+src/
+├── config/
+│   ├── db.js              ✅ tumhare paas hai
+│   └── constants.js       ← abhi banayenge
+├── controllers/
+│   ├── auth.controller.js
+│   ├── product.controller.js
+│   ├── order.controller.js
+│   └── user.controller.js
+├── middlewares/
+│   ├── auth.middleware.js
+│   ├── error.middleware.js
+│   ├── validate.middleware.js
+│   └── rateLimiter.middleware.js
+├── models/
+│   ├── user.model.js
+│   ├── product.model.js
+│   ├── order.model.js
+│   ├── coupon.model.js
+│   └── review.model.js
+├── routes/
+│   ├── index.js           ← master router
+│   ├── auth.routes.js
+│   ├── product.routes.js
+│   ├── order.routes.js
+│   └── user.routes.js
+├── services/
+│   ├── email.service.js
+│   └── payment.service.js
+├── utils/
+│   ├── ApiResponse.js
+│   ├── ApiError.js
+│   └── asyncHandler.js
+├── validators/
+│   ├── auth.validator.js
+│   └── product.validator.js
+├── app.js
+└── server.js
+
 # README
 This project is a Node.js application structured in a modular way to promote separation of concerns and maintainability. Below is an overview of the project structure and its components:
