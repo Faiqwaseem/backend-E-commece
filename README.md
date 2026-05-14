@@ -80,19 +80,3 @@ src/
 
 # README
 This project is a Node.js application structured in a modular way to promote separation of concerns and maintainability. Below is an overview of the project structure and its components:
-
-graph TD
-    A[User Signup] --> B[Create User Object]
-    B --> C[user.save()]
-    C --> D{pre-save hook}
-    D --> E[hashPassword function]
-    E --> F[genSalt - 10 rounds]
-    F --> G[bcrypt.hash - mix salt + password]
-    G --> H[Store hashed password in DB]
-    
-    I[User Login] --> J[Find user by email]
-    J --> K[validatePassword function]
-    K --> L[bcrypt.compare]
-    L --> M{Match?}
-    M -->|Yes| N[Login Success]
-    M -->|No| O[Login Failed]
