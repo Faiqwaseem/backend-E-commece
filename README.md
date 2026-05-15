@@ -96,3 +96,5 @@ graph TD
     L --> M{Match?}
     M -->|Yes| N[Login Success]
     M -->|No| O[Login Failed]
+
+    npm install express mongoose cors dotenv bcryptjs jsonwebtoken cookie-parser helmet compression morgan express-rate-limit hpp express-mongo-sanitize xss-clean express-validator
