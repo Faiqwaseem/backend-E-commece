@@ -12,7 +12,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const routes = require("./routes/index.route");
 const app = express();
 
-app.use(cors()); // add this line to production {origin: 'http://localhost:8080', credentials: true}
+app.use(cors({origin: 'http://localhost:8080', credentials: true})); // add this line to production {origin: 'http://localhost:8080', credentials: true}
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet()); // Helmet multiple headers set karta hai attackers ko r
 app.use(compression()); // data ko compress kar deta hai ager 500 to usy 80 kar deta hai
@@ -20,7 +20,6 @@ app.use(morgan("dev")); // Errors track karne me help. Console Me Logs Show kart
 app.use(express.json()); // express.json() is a middleware express ko bata hai data json formate me hai
 app.use(cookieParser()); // cookieParser is a middleware
 app.use(hpp()); // HPP duplicate params remove karta hai.  Prevent HTTP Parameter Pollution ..HPP = URL Cleaner
-app.use(mongoSanitize()); // Mongo sanitize $ aur . remove karta hai.
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
