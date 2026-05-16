@@ -45,11 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await userModel
-    .findOne({
-      $or: [{ email }, { password }],
-    })
-    .select("+password");
+  const user = await userModel.findOne({ email }).select("+password");
 
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials" });
