@@ -1,35 +1,58 @@
-# 🚀 Backend E-Commerce API
+# 🚀 Stellar E-Commerce Backend API
 
-A scalable and production-ready E-Commerce Backend API built with:
+A fully scalable, secure, enterprise-grade, and production-ready E-Commerce Backend API built with modern backend architecture and best practices.
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
-- Cookie-Based Auth
-- MVC Architecture
-- Secure Production Middleware
+Designed for:
 
----
-
-# 📦 Tech Stack
-
-- Node.js
-- Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- bcryptjs
-- cookie-parser
-- express-rate-limit
-- helmet
-- compression
-- hpp
-- express-mongo-sanitize
-- morgan
+- Production Applications
+- Real MERN Stack Projects
+- Enterprise-Level Scaling
+- Secure Authentication Systems
+- High Performance APIs
 
 ---
 
-# 📁 Project Structure
+# 🌍 Live Architecture Overview
+
+```txt
+Frontend (React / Next.js)
+        ↓
+Axios API Layer
+        ↓
+Express.js REST API
+        ↓
+Controllers
+        ↓
+Services Layer
+        ↓
+MongoDB Database
+        ↓
+JWT Authentication + Cookies
+```
+
+---
+
+# ⚡ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Node.js | JavaScript Runtime |
+| Express.js | Backend Framework |
+| MongoDB | NoSQL Database |
+| Mongoose | MongoDB ODM |
+| JWT | Authentication |
+| bcryptjs | Password Hashing |
+| cookie-parser | Cookie Handling |
+| Helmet | Security Headers |
+| Compression | Response Compression |
+| Morgan | Request Logging |
+| HPP | HTTP Parameter Pollution Protection |
+| express-rate-limit | API Rate Limiting |
+| express-mongo-sanitize | MongoDB Injection Protection |
+
+---
+
+# 📁 Production Folder Structure
 
 ```bash
 src/
