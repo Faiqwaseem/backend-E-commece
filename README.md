@@ -392,7 +392,7 @@ I --> J[auth.api.ts]
 
 J --> K[Axios Instance]
 
-K --> L[/api/v1/auth/login]
+K --> L["/api/v1/auth/login"]
 
 L --> M[auth.route.js]
 
