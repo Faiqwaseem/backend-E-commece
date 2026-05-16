@@ -34,32 +34,40 @@ A scalable and production-ready E-Commerce Backend API built with:
 ```bash
 src/
 ├── config/
-│   └── db.js
-│
+│   ├── db.js              ✅ tumhare paas hai
+│   └── constants.js       ← abhi banayenge
 ├── controllers/
-│   └── auth.controller.js
-│
+│   ├── auth.controller.js
+│   ├── product.controller.js
+│   ├── order.controller.js
+│   └── user.controller.js
 ├── middlewares/
-│   └── error.middleware.js
-│
+│   ├── auth.middleware.js
+│   ├── error.middleware.js
+│   ├── validate.middleware.js
+│   └── rateLimiter.middleware.js
 ├── models/
-│   └── user.model.js
-│
+│   ├── user.model.js
+│   ├── product.model.js
+│   ├── order.model.js
+│   ├── coupon.model.js
+│   └── review.model.js
 ├── routes/
-│   ├── auth.route.js
-│   └── index.route.js
-│
+│   ├── index.js           ← master router
+│   ├── auth.routes.js
+│   ├── product.routes.js
+│   ├── order.routes.js
+│   └── user.routes.js
 ├── services/
-│
-├── test/
-│
+│   ├── email.service.js
+│   └── payment.service.js
 ├── utils/
+│   ├── ApiResponse.js
 │   ├── ApiError.js
-│   ├── asyncHandler.js
-│   └── generateAuthToken.js
-│
+│   └── asyncHandler.js
 ├── validators/
-│   └── user.validator.js
-│
+│   ├── auth.validator.js
+│   └── product.validator.js
 ├── app.js
-└── server.js
+└── server.js8
+```
