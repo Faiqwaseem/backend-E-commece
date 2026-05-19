@@ -2,8 +2,15 @@ const userModel = require("../models/user.model");
 const asyncHandler = require("../utils/asyncHandler");
 const generateAuthToken = require("../utils/generateAuthToken");
 
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+};
+
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, role = "user" } = req.body;
+  const { username, email, password } = req.body;
 
   const userExists = await userModel.findOne({
     $or: [{ username }, { email }],
@@ -19,15 +26,13 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     email,
     password,
-    role,
+    role: "user",
   });
 
   const token = await generateAuthToken(newUser._id, newUser.role);
 
   res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    cookieOptions,
   });
 
   return res.status(201).json({
@@ -59,11 +64,7 @@ const userLogin = asyncHandler(async (req, res) => {
 
   const token = await generateAuthToken(user._id, user.role);
 
-  res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-  });
+  res.cookie("jwt", token, cookieOptions);
 
   return res.status(200).json({
     success: true,
@@ -77,12 +78,15 @@ const userLogin = asyncHandler(async (req, res) => {
   });
 });
 
-const logoutUser = asyncHandler(async (req, res) => {
-  res.clearCookie("jwt", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
+const getCurrentUser = asyncHandler(async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    data: req.user,
   });
+});
+
+const logoutUser = asyncHandler(async (req, res) => {
+  res.clearCookie("jwt", cookieOptions);
 
   return res.status(200).json({
     message: "User logged out successfully",
@@ -91,8 +95,11 @@ const logoutUser = asyncHandler(async (req, res) => {
   });
 });
 
+
+
 module.exports = {
   registerUser,
   userLogin,
   logoutUser,
+  getCurrentUser,
 };
