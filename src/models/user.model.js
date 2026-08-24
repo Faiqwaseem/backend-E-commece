@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
+const crypto = require("crypto");
 // ADDRESS SCHEMA (STRONG)
 const addressSchema = new mongoose.Schema(
   {
@@ -63,6 +63,14 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
 
+    passwordResetToken: {
+      type: String,
+    },
+
+    passwordResetExpires: {
+      type: Date,
+    },
+
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -108,7 +116,6 @@ userSchema.pre("save", async function () {
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-
 });
 
 // INSTANCE METHOD
@@ -120,6 +127,37 @@ userSchema.methods.comparePassword = async function (password) {
 userSchema.statics.isEmailTaken = async function (email) {
   const user = await this.findOne({ email });
   return !!user;
+};
+
+userSchema.methods.generatePasswordResetToken = function () {
+  /*
+    |--------------------------------------------------------------------------
+    | GENERATE RAW TOKEN
+    |--------------------------------------------------------------------------
+    */
+
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  /*
+    |--------------------------------------------------------------------------
+    | HASH TOKEN
+    |--------------------------------------------------------------------------
+    */
+
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  /*
+    |--------------------------------------------------------------------------
+    | EXPIRY
+    |--------------------------------------------------------------------------
+    */
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const userModel = mongoose.model("User", userSchema);
