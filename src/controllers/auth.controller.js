@@ -222,4 +222,6 @@ module.exports = {
   userLogin,
   logoutUser,
   getCurrentUser,
+  forgotPassword,      
+  resetPassword,
 };
