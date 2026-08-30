@@ -30,6 +30,18 @@ MongoDB Database
 JWT Authentication + Cookies
 ```
 
+# status code
+```
+200 → Success
+201 → Successfully CREATED something new
+400 → Bad request / validation problem
+401 → Authentication required/invalid
+403 → Authenticated but not allowed
+404 → Resource not found
+500 → Server error
+```
+
+
 ---
 
 # ⚡ Tech Stack
