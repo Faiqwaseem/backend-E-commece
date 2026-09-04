@@ -32,18 +32,17 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const token = await generateAuthToken(newUser._id, newUser.role);
 
-  res.cookie("jwt", token, {
-    cookieOptions,
-  });
+  res.cookie("jwt", token, cookieOptions);
 
   return res.status(201).json({
     success: true,
     message: "User registered successfully",
     data: {
-      _id: newUser._id,
-      username: newUser.username,
-      email: newUser.email,
-      role: newUser.role,
+       _id: newUser._id,
+       username: newUser.username,
+       fullName: newUser.fullName,
+       email: newUser.email,
+       role: newUser.role,
     },
   });
 });
@@ -73,6 +72,7 @@ const userLogin = asyncHandler(async (req, res) => {
     data: {
       _id: user._id,
       name: user.name,
+      fullName: user.fullName,
       email: user.email,
       role: user.role,
     },

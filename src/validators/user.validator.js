@@ -2,7 +2,7 @@ const { body, validationResult } = require("express-validator");
 
 const validateResult = (req, res, next) => {
   try {
-    result = validationResult(req);
+   const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(400).json({ errors: result.array() });
     }
@@ -53,9 +53,8 @@ const loginUserValidationRoles = [
   body("password")
     .isString()
     .withMessage("password should be a string")
-    .isLength({ min: 6, max: 15 })
+    .isLength({ min: 8, max: 15 })
     .withMessage("password should be at least 8 characters long")
-    .trim()
     .notEmpty()
     .withMessage("password is required"),
   validateResult,
