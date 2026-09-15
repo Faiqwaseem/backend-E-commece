@@ -38,11 +38,11 @@ const registerUser = asyncHandler(async (req, res) => {
     success: true,
     message: "User registered successfully",
     data: {
-       _id: newUser._id,
-       username: newUser.username,
-       fullName: newUser.fullName,
-       email: newUser.email,
-       role: newUser.role,
+      _id: newUser._id,
+      username: newUser.username,
+      fullName: newUser.fullName,
+      email: newUser.email,
+      role: newUser.role,
     },
   });
 });
@@ -210,7 +210,7 @@ const resetPassword = asyncHandler(async (req, res) => {
   user.passwordResetExpires = undefined;
 
   await user.save();
-  
+
   return res.status(200).json({
     success: true,
     message: "Password reset successful",
@@ -222,6 +222,6 @@ module.exports = {
   userLogin,
   logoutUser,
   getCurrentUser,
-  forgotPassword,      
+  forgotPassword,
   resetPassword,
 };

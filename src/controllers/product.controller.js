@@ -32,10 +32,7 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
-  const product = await productService.updateProduct(
-    req.params.id,
-    req.body,
-  );
+  const product = await productService.updateProduct(req.params.id, req.body);
 
   return res.status(200).json({
     success: true,

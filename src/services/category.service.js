@@ -60,10 +60,7 @@ const updateCategory = async (categoryId, updateData) => {
     });
 
     if (duplicateCategory) {
-      if (
-        updateData.name &&
-        duplicateCategory.name === updateData.name
-      ) {
+      if (updateData.name && duplicateCategory.name === updateData.name) {
         throw new ApiError(409, "Category name already exists");
       }
 
