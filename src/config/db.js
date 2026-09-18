@@ -7,7 +7,7 @@ async function connectDB() {
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     
   } catch (error) {
-    console.log("Error connecting to database", error.massage);
+    console.log("Error connecting to database", error.message);
 
     process.exit(1); // Meaning: Application ko stop karo
   }

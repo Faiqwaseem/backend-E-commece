@@ -3,6 +3,7 @@ const adminRoute = require("./admin.route");
 const categoryRoute = require("./category.route");
 const productRoute = require("./product.route");
 const cartRoute = require("./cart.route");
+const orderRoute = require("./order.route");
 const errorMiddleware = require("../middlewares/error.middleware");
 
 const routes = (app) => {
@@ -12,6 +13,7 @@ const routes = (app) => {
   app.use("/api/v1/admin", adminRoute);
   app.use("/api/v1/products", productRoute)
   app.use("/api/v1/cart", cartRoute);
+  app.use("/api/v1/orders", orderRoute);
 
   app.use(errorMiddleware);
 };
