@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@imagekit/nodejs": "^7.12.1",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "compression": "^1.8.1",
@@ -29,6 +30,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.2",
     "morgan": "^1.10.1",
+    "multer": "^2.4.0",
     "xss-clean": "^0.1.4"
   }
 }

@@ -1,9 +1,14 @@
 const express = require("express");
+const multer = require("multer");
 
 const productController = require("../controllers/product.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 const authorize = require("../middlewares/authorize.middleware");
 const { validateProduct } = require("../validators/product.validator");
+
+const upload = multer({
+    storage: multer.memoryStorage()
+});
 
 const router = express.Router();
 
@@ -18,6 +23,7 @@ router.post(
   authMiddleware,
   authorize("admin"),
   validateProduct,
+  upload.single('product'),
   productController.createProduct,
 );
 

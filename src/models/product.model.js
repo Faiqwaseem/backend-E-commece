@@ -73,10 +73,27 @@ const productSchema = new mongoose.Schema(
       },
     ],
 
-    isActive: {
+    featured: {
       type: Boolean,
-      default: true,
-      index: true,
+      default: false,
+    },
+
+    bestSeller: {
+      type: Boolean,
+      default: false,
+    },
+
+    rating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
+    },
+
+    reviewCount: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
   },
   {

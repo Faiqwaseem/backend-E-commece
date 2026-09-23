@@ -1,8 +1,17 @@
 const asyncHandler = require("../utils/asyncHandler");
 const productService = require("../services/product.service");
+const { uploadImage } = require("../services/storage.service");
 
 const createProduct = asyncHandler(async (req, res) => {
-  const product = await productService.createProduct(req.body);
+  const image = req.files?.[0];
+
+  const imageuri = await uploadImage(image.buffer.toString("base64"));
+  console.log("imageuri", imageuri);
+
+  const product = await productService.createProduct({
+    ...req.body,
+    images: imageuri.url,
+  });
 
   return res.status(201).json({
     success: true,
