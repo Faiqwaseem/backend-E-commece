@@ -5,10 +5,11 @@ const imageKitClient = new ImageKit({
 })
 
 async function uploadImage(file) {
+    console.log(file)
     const result = await imageKitClient.files.upload({
         file,
         fileName: "product_" + Date.now(),
-        folder: "/product",
+        folder: "e-commerce/product",
     });
     console.log("result", result);
    return result
