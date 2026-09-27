@@ -31,7 +31,7 @@ const createProduct = async (productData) => {
   }
 
   const product = await Product.create(productData);
-
+    await product.populate("category", "name slug");
   return product;
 };
 
@@ -110,6 +110,7 @@ const updateProduct = async (productId, updateData) => {
   Object.assign(product, updateData);
 
   await product.save();
+  await product.populate("category", "name slug");
 
   return product;
 };

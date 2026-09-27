@@ -1,8 +1,30 @@
 const asyncHandler = require("../utils/asyncHandler");
 const productService = require("../services/product.service");
+const { uploadImage } = require("../services/storage.service");
 
 const createProduct = asyncHandler(async (req, res) => {
-  const product = await productService.createProduct(req.body);
+  const files = req.files || [];
+
+  const images = [];
+
+  if (files.length > 0) {
+    for (const file of files) {
+      try {
+        const imageResult = await uploadImage(
+          file.buffer.toString("base64")
+        );
+        images.push(imageResult.url);
+      } catch (error) {
+        console.error("Image upload failed:", error);
+        throw new Error(`Failed to upload image: ${file.originalname}`);
+      }
+    }
+  }
+
+  const product = await productService.createProduct({
+    ...req.body,
+    images,
+  });
 
   return res.status(201).json({
     success: true,
@@ -32,7 +54,27 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
-  const product = await productService.updateProduct(req.params.id, req.body);
+  const files = req.files;
+
+  const images = [];
+
+  if (files?.length) {
+    for (const file of files) {
+      const imageResult = await uploadImage(
+        file.buffer.toString("base64"),
+      );
+
+      images.push(imageResult.url);
+    }
+  }
+
+  const product = await productService.updateProduct(
+    req.params.id,
+    {
+      ...req.body,
+      images,
+    },
+  );
 
   return res.status(200).json({
     success: true,
