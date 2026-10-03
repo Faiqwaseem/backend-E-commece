@@ -1,8 +1,26 @@
 const asyncHandler = require("../utils/asyncHandler");
 const categoryService = require("../services/category.service");
+const { uploadImage } = require("../services/storage.service");
 
 const createCategory = asyncHandler(async (req, res) => {
-  const category = await categoryService.createCategory(req.body);
+  let image;
+  
+
+  if (req.file) {
+    const imageResult = await uploadImage(
+      req.file.buffer.toString("base64"),
+    );
+
+    image = imageResult.url;
+  }
+  console.log("image", image);
+
+
+  const category = await categoryService.createCategory({
+    ...req.body,
+    ...(image && { image }),
+  });
+
 
   return res.status(201).json({
     success: true,
@@ -32,9 +50,22 @@ const getCategoryById = asyncHandler(async (req, res) => {
 });
 
 const updateCategory = asyncHandler(async (req, res) => {
+  let image;
+
+  if (req.file) {
+    const imageResult = await uploadImage(
+      req.file.buffer.toString("base64"),
+    );
+
+    image = imageResult.url;
+  }
+
   const category = await categoryService.updateCategory(
     req.params.id,
-    req.body,
+    {
+      ...req.body,
+      ...(image && { image }),
+    },
   );
 
   return res.status(200).json({
