@@ -37,10 +37,11 @@ const validateUpdateCartItem = [
     .withMessage("Product must be a valid ID"),
 
   body("quantity")
-    .notEmpty()
+    .exists()
     .withMessage("Quantity is required")
+    .bail()
     .isInt({ min: 1 })
-    .withMessage("Quantity must be at least 1")
+    .withMessage("Quantity must be a positive integer")
     .toInt(),
 
   (req, res, next) => {
